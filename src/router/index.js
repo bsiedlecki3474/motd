@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import mainLayout from '@/layouts/mainLayout'
 import rankingLayout from '@/layouts/rankingLayout'
 import adminLayout from '@/layouts/adminLayout'
+import dashboardLayout from '@/layouts/dashboardLayout'
 
 Vue.use(Router)
-
 
 const router = new Router({
   mode: 'history',
@@ -20,7 +21,14 @@ const router = new Router({
     },
     {
       path: '/admin',
+      name: 'admin',
       component: adminLayout
+      
+    },
+    {
+      path: '/admin/dashboard',
+      name: 'dashboard',
+      component: dashboardLayout
     }
   ]
 })

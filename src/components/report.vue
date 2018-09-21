@@ -31,7 +31,7 @@ export default {
                 var self = this;
 
                 // Make a request for a user with a given ID
-                axios.post('http://localhost/motdapi/public/api/report/add', { message: self.report })
+                axios.post('http://speedrun.minespace.net/api/public/api/report/add', { message: self.report })
                 .then(function (response) {
                     // handle success
                     alert("success");

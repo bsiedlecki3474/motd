@@ -283,7 +283,7 @@ export default {
 
 		var self = this;
 
-		axios.get('http://localhost/motdapi/public/api/ranking/'+self.map.name+'/style='+self.styleID)
+		axios.get('http://speedrun.minespace.net/api/public/api/ranking/'+self.map.name+'/style='+self.styleID)
 		.then(function (response) {
 			// handle success
 			self.records = response.data;
@@ -330,7 +330,7 @@ export default {
 
 	var self = this;
 
-	axios.get('http://localhost/motdapi/public/api/ranking/maps')
+	axios.get('http://speedrun.minespace.net/api/public/api/ranking/maps')
 	.then(function (response) {
 		// handle success
 		self.maps = response.data;
@@ -343,7 +343,7 @@ export default {
 		// always executed
 	});
 
-	axios.get('http://localhost/motdapi/public/api/ranking/styles')
+	axios.get('http://speedrun.minespace.net/api/public/api/ranking/styles')
 	.then(function (response) {
 		// handle success
 		self.styles = response.data;
@@ -356,7 +356,7 @@ export default {
 		// always executed
 	});
 
-	axios.get('http://localhost/motdapi/public/api/ranking/top15')
+	axios.get('http://speedrun.minespace.net/api/public/api/ranking/top15')
 	.then(function (response) {
 		// handle success
 		self.top15 = response.data;

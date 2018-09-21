@@ -33,7 +33,7 @@ export default {
 
                 var self = this;
 
-                axios.get('http://localhost/motdapi/public/api/login', {
+                axios.get('http://speedrun.minespace.net/api/public/api/login', {
                     params: {
                         username: self.login.username,
                         password: self.login.password
@@ -41,7 +41,6 @@ export default {
                 })
                 .then(function (response) {
                     // handle success
-                    console.log(response);
                     self.logged = response.data;
                 })
                 .catch(function (error) {
@@ -53,12 +52,12 @@ export default {
                     if (self.logged == false) self.loginError = 'Wrong username or password';
                     else { 
                         self.loginError = '';
-                        self.$router.push('/dashboard');
+                        self.$emit('authenticated', true);
+                        self.$router.replace({ name: "dashboard" });
                     }
                         
                 });
             }
-            
       }
   },
   components: {
