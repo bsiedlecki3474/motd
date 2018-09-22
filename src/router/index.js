@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import mainLayout from '@/layouts/mainLayout'
 import rankingLayout from '@/layouts/rankingLayout'
+import speedrunTvLayout from '@/layouts/speedrunTvLayout'
 import adminLayout from '@/layouts/adminLayout'
 import dashboardLayout from '@/layouts/dashboardLayout'
 
@@ -18,6 +19,10 @@ const router = new Router({
     {
       path: '/ranking',
       component: rankingLayout
+    },
+    {
+      path: '/speedrunTV',
+      component: speedrunTvLayout
     },
     {
       path: '/admin',

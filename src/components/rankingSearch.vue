@@ -277,7 +277,7 @@ export default {
 		  if (index == 0) {
 			  this.firstTime = time;
 		  }
-		  return time;
+		  return this.firstTime;
 	  },
 	  getRecords() {
 
