@@ -15,6 +15,8 @@
             
             </pre>
 
+            {{ auth }}
+
         </div>
     </div>
 </template>
@@ -22,6 +24,7 @@
 <script>
 
 import {  } from 'mdbvue'
+import bus from '../bus.js'
 
 export default {
   methods: {
@@ -30,9 +33,17 @@ export default {
   components: {
       
   },
+  created() {
+    //   bus.$on('authenticated', data => {
+    //       this.auth = true;
+    //       alert("xd?");
+    //       });
+
+          console.log(bus);
+  },
   data() {
       return {
-        
+          auth: false
       }
   }
 }

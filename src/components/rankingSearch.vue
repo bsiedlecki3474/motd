@@ -368,7 +368,6 @@ export default {
 	.then(function () {
 		// always executed
 	});
-
 	
   }
 }

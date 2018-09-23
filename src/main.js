@@ -6,11 +6,13 @@ import 'mdbvue/build/css/mdb.css';
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+//import vueSmoothScroll from 'vue2-smooth-scroll'
 
 import Default from './layouts/Default'
 import Main from './layouts/Main'
 import Admin from './layouts/admin'
 
+//Vue.use(vueSmoothScroll)
 
 Vue.component("default-layout", Default);
 Vue.component("main-layout", Main);

@@ -12,8 +12,8 @@
             </div>
             
             <h6 id="bugapply" class="text-center topmargins"></h6>
-            <button v-on:click.once="sendReport" class="btn btn-elegant obj-center">Send!</button>
-            error alert do wyjebania
+            <button v-on:click.once="sendReport" :class="[clicked ? 'btn-danger' : 'btn-elegant', 'btn', 'obj-center']">Send!</button>
+            <h6 class="text-center" v-if="message">{{ message }}</h6>
 
         </div>
 
@@ -24,30 +24,38 @@
 export default {
   methods: {
       sendReport() {
+            this.clicked = true;
+
             if (this.report.length <= 100) {
 
-                const axios = require('axios');
+                if (this.report == "")
+                    this.message = 'Write the message before submitting :)';
+                
+                else {
 
-                var self = this;
+                    const axios = require('axios');
 
-                // Make a request for a user with a given ID
-                axios.post('http://speedrun.minespace.net/api/public/api/report/add', { message: self.report })
-                .then(function (response) {
-                    // handle success
-                    alert("success");
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
-                .then(function () {
-                    // always executed
-                });
+                    var self = this;
 
-            } else {
-                alert("> 100")
+                    // Make a request for a user with a given ID
+                    axios.post('http://speedrun.minespace.net/api/public/api/report/add', { message: self.report })
+                    .then(function (response) {
+                        // handle success
+                        self.message = 'Thanks for reporting the issue!';
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+
+                }
+
             }
+            else if (this.report.length > 100)
+                this.message = 'Your message is too long, you sneaky!';
 
       },
       countChars() {
@@ -59,7 +67,9 @@ export default {
   },
   data() {
       return {
-          report: ""
+          report: "",
+          message: "",
+          clicked: false
       }
   }
 }
