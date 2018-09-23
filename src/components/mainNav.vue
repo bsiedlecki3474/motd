@@ -79,7 +79,7 @@
 	  <navbar-item href="#reportabug">Report a bug</navbar-item>
       <navbar-item href="https://minespace.net/sourcebans">Bans</navbar-item>
 	  <navbar-item><router-link to="speedruntv" class="nav-link">SpeedrunTV</router-link></navbar-item>
-	  <navbar-item><router-link to="admin" class="nav-link">ADMIN</router-link></navbar-item>
+	  <navbar-item><router-link to="login" class="nav-link">ADMIN</router-link></navbar-item>
     </navbar-nav>
   </navbar-collapse>
 </navbar>

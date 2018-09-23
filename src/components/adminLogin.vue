@@ -26,7 +26,7 @@ export default {
   methods: {
       loginAdmin() {
             if (this.login.username.length < 1 || this.login.password.length < 1) {
-                this.loginError = 'Fill both username and login fields first';
+                this.loginError = 'Fill both username and password fields first';
             }
             else {
                 const axios = require('axios');

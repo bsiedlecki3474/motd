@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import mainLayout from '@/layouts/mainLayout'
-import rankingLayout from '@/layouts/rankingLayout'
-import speedrunTvLayout from '@/layouts/speedrunTvLayout'
-import adminLayout from '@/layouts/adminLayout'
-import dashboardLayout from '@/layouts/dashboardLayout'
+import index from '@/sites/index'
+import ranking from '@/sites/ranking'
+import speedrunTv from '@/sites/speedrunTv'
+import login from '@/sites/login'
+import dashboard from '@/sites/dashboard'
 
 Vue.use(Router)
 
@@ -14,26 +14,31 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      component: mainLayout
+      component: index,
+      meta: { layout: "main" }
     },
     {
       path: '/ranking',
-      component: rankingLayout
+      component: ranking,
+      meta: { layout: "default" }
     },
     {
       path: '/speedrunTV',
-      component: speedrunTvLayout
+      component: speedrunTv,
+      meta: { layout: "default" }
     },
     {
-      path: '/admin',
-      name: 'admin',
-      component: adminLayout
+      path: '/login',
+      name: 'login',
+      component: login,
+      meta: { layout: "default" }
       
     },
     {
       path: '/admin/dashboard',
       name: 'dashboard',
-      component: dashboardLayout
+      component: dashboard,
+      meta: { layout: "admin" }
     }
   ]
 })

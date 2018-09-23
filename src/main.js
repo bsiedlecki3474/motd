@@ -7,6 +7,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import Default from './layouts/Default'
+import Main from './layouts/Main'
+import Admin from './layouts/admin'
+
+
+Vue.component("default-layout", Default);
+Vue.component("main-layout", Main);
+Vue.component("admin-layout", Admin);
+
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 Vue.prototype.$http = window.axios
