@@ -9,13 +9,16 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>Map</th>
-                        <th>Download</th>
+                        <th>Link</th>
                     </tr>
                 </tbl-head>
                 <tbl-body>
-                    <tr v-for="demo, index in demodata">
-                        <td>{{ demo.date }}</td>
-                        <td>Download</td>
+                    <tr v-for="(index, id) in demolist.length"> <!-- lol -->
+                        <td>{{ id + 1 }}</td>
+                        <td>{{ demodata.date[id] }}</td>
+                        <td>{{ demodata.time[id] }}</td>
+                        <td>{{ demodata.map[id] }}</td>
+                        <td><a>Download</a></td>
                     </tr>
                 </tbl-body>
             </tbl>
@@ -45,9 +48,11 @@ export default {
   data() {
       return {
         demolist: [],
-            date: [],
-            time: [],
-            map: []
+        demodata: {
+            date: {},
+            time: {},
+            map: {}
+        }
       }
   },
   created() {
@@ -65,29 +70,31 @@ export default {
         })
         .then(function () {
             // always executed
+            for (var i = 0; i < self.demolist.length; i++) {
+
+                var data = self.demolist[i].split("-");
+
+                var year = data[1].substr(0, 4);
+                var month = data[1].substr(4, 2);
+                var day = data[1].substr(6, 2);
+
+                var date = day + "." + month + "." + year;
+
+                var hour = data[2].substr(0, 2);
+                var minute = data[2].substr(2, 2);
+                var second = data[2].substr(4, 2);
+
+                var time = hour + ":" + minute + ":" + second;
+
+                var map = data[5].slice(0, -8)
+
+                self.$set(self.demodata.date, i, date);
+                self.$set(self.demodata.time, i, time);
+                self.$set(self.demodata.map, i, map);
+
+            }
+
         });
-
-        for (var i = 0; i < this.demolist.length; i++) {
-            var data = demolist[i].split("-");
-
-            var year = substr(data[1], 4);
-            var month = substr(data[1], 4, 2);
-            var day = substr(data[1], 6, 2);
-
-            this.date.push(day + "." + month + "." + year);
-
-            var hour = substr(data[2], 2);
-            var minute = substr(data[2], 2, 2);
-            var second = substr(data[2], 4, 2);
-
-            this.time.push(hour + ":" + minute + ":" + second);
-
-            this.map.push(substr(data[5], 8));
-
-            unset(demolist);
-
-            console.log(JSON.stringify(this.demodata));
-        }
 
   }
 }
