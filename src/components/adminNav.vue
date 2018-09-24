@@ -29,6 +29,8 @@ import {
 	DropdownMenu
 } from 'mdbvue';
 
+import EventBus from '../main.js'
+
 export default {
 	components: {
 		Navbar,
@@ -40,6 +42,12 @@ export default {
 		DropdownToggle,
 		DropdownMenu
 	},
+	methods: {
+		logout() {
+			//EventBus.$off('authenticated');
+			this.$router.replace({ name: "login" });
+		}
+	}
     
 }
 </script>

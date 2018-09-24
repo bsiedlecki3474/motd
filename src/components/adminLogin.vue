@@ -21,7 +21,7 @@
 <script>
 
 import { mdbInput } from 'mdbvue'
-import bus from '../bus.js'
+import EventBus from '../main.js'
 
 export default {
   methods: {
@@ -53,7 +53,7 @@ export default {
                     if (self.logged == false) self.loginError = 'Wrong username or password';
                     else { 
                         self.loginError = '';
-                        bus.$emit('authenticated', 1831738351);
+                        EventBus.$emit('authenticated', true);
                         self.$router.replace({ name: "dashboard" });
                     }
                         

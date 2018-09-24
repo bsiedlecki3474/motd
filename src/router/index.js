@@ -35,7 +35,7 @@ const router = new Router({
       
     },
     {
-      path: '/admin/dashboard',
+      path: '/dashboard',
       name: 'dashboard',
       component: dashboard,
       meta: { layout: "admin" }

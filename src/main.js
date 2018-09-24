@@ -14,6 +14,9 @@ import Admin from './layouts/admin'
 
 //Vue.use(vueSmoothScroll)
 
+const EventBus = new Vue();
+export default EventBus;
+
 Vue.component("default-layout", Default);
 Vue.component("main-layout", Main);
 Vue.component("admin-layout", Admin);

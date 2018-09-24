@@ -15,7 +15,8 @@
             
             </pre>
 
-            {{ auth }}
+            {{ logged }}
+
 
         </div>
     </div>
@@ -24,26 +25,30 @@
 <script>
 
 import {  } from 'mdbvue'
-import bus from '../bus.js'
+import EventBus from '../main.js'
 
 export default {
   methods: {
-      
+        authUser() {
+            EventBus.$on('authenticated', data => {
+                this.logged = data;
+                alert(data);
+            });
+        }
   },
   components: {
       
   },
   created() {
-    //   bus.$on('authenticated', data => {
-    //       this.auth = true;
-    //       alert("xd?");
-    //       });
 
-          console.log(bus);
+    this.authUser();
+    
+    if (this.logged == false) this.$router.replace({ name: "login" });
+
   },
   data() {
       return {
-          auth: false
+          logged: ''
       }
   }
 }
