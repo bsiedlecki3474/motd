@@ -7,6 +7,7 @@ import speedrunTv from '@/sites/speedrunTv'
 import vip from '@/sites/vip'
 import login from '@/sites/login'
 import dashboard from '@/sites/dashboard'
+import reports from '@/sites/reports'
 
 Vue.use(Router)
 
@@ -44,6 +45,12 @@ const router = new Router({
       path: '/dashboard',
       name: 'dashboard',
       component: dashboard,
+      meta: { layout: "admin" }
+    },
+    {
+      path: '/reports',
+      name: 'reportlist',
+      component: reports,
       meta: { layout: "admin" }
     }
   ]
