@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import index from '@/sites/index'
 import ranking from '@/sites/ranking'
 import speedrunTv from '@/sites/speedrunTv'
+import vip from '@/sites/vip'
 import login from '@/sites/login'
 import dashboard from '@/sites/dashboard'
 
@@ -25,6 +26,11 @@ const router = new Router({
     {
       path: '/speedrunTV',
       component: speedrunTv,
+      meta: { layout: "default" }
+    },
+    {
+      path: '/vip',
+      component: vip,
       meta: { layout: "default" }
     },
     {

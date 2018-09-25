@@ -59,10 +59,10 @@
 
 	</nav>-->
 	<div>
-<navbar position="top" class="navbar-elegant" dark>
+<navbar position="top" dark color="elegant" scrolling>
   <img src="../assets/bhopicon_white.png" height="30" alt="bhopicon">
   <navbar-collapse>
-    <navbar-nav>
+    <navbar-nav class="top-nav-collapse">
       <navbar-item active><router-link to="vip" class="nav-link"><b>VIP feature</b></router-link></navbar-item>
 	  <dropdown tag="li" class="nav-item">
         <dropdown-toggle tag="a" navLink color="none" slot="toggle" waves-fixed>Timer</dropdown-toggle>
@@ -89,27 +89,34 @@
 
 <script>
 
-import {
-	Navbar,
-	NavbarNav,
-	NavbarItem,
-	NavbarCollapse,
-	Dropdown,
-	DropdownItem,
-	DropdownToggle,
-	DropdownMenu
-} from 'mdbvue';
+// import {
+// 	Navbar,
+// 	NavbarNav,
+// 	NavbarItem,
+// 	NavbarCollapse,
+// 	Dropdown,
+// 	DropdownItem,
+// 	DropdownToggle,
+// 	DropdownMenu
+// } from 'mdbvue';
+
+import { Navbar, NavbarItem, NavbarNav, NavbarCollapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, mdbInput, Btn, waves, mdbNavbarBrand } from 'mdbvue';
+
 
 export default {
 	components: {
 		Navbar,
-		NavbarNav,
-		NavbarItem,
-		NavbarCollapse,
-		Dropdown,
-		DropdownItem,
-		DropdownToggle,
-		DropdownMenu
+    NavbarItem,
+    NavbarNav,
+    NavbarCollapse,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    mdbInput,
+    Btn,
+    waves,
+    mdbNavbarBrand
 	}
 }
 </script>
@@ -117,20 +124,22 @@ export default {
 <style scoped>
 
 /* Navbar animation */
-.navbar {
+/*.navbar {
   background-color: rgba(0, 0, 0, 0.2);
-}
+}*/
 
-.top-nav-collapse {
-    background: #2e2e2e !important;
-}
+
 
 /* Adding color to the Navbar on mobile */
 /*@media only screen and (max-width: 768px) {*/
-    .navbar {
+    /*.navbar {
         background: #2e2e2e!important; 
     }
 /*}*/
+
+.navbar .dropdown-menu a:hover {
+  color: inherit !important;
+}
 
 
 

@@ -118,9 +118,17 @@
 							</tbl-head>
 							<tbl-body>
 								<tr v-for="player, index in top15">
-									<td>{{ index + 1 }}</td>
-									<td>{{ player.name }}</td>
-									<td>{{ player.points }}</td>
+									<td><b v-if="index <= 2">{{ index + 1 }}</b><span v-else>{{ index + 1 }}</span> 
+										<i class="far fa-star gold-star" v-if="index == 0"></i>
+										<i class="far fa-star silver-star" v-else-if="index == 1"></i>
+										<i class="far fa-star bronze-star" v-else-if="index == 2"></i>
+									</td>
+									<td>
+										<b v-if="index <= 2">{{ player.name }}</b><span v-else>{{ player.name }}</span>
+									</td>
+									<td>
+										<b v-if="index <= 2">{{ player.points }}</b><span v-else>{{ player.points }}</span>
+									</td>
 								</tr>
 							</tbl-body>
 						</tbl>
@@ -401,5 +409,17 @@ export default {
 	padding: 0 10px 0 10px;
 }
 */
+
+.gold-star {
+	color: #FF8800;
+}
+
+.silver-star {
+	color: #bdbdbd;
+}
+
+.bronze-star {
+	color: #795548;
+}
 
 </style>
