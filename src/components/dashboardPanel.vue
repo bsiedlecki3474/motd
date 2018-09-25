@@ -24,16 +24,12 @@
 
 <script>
 
-import {  } from 'mdbvue'
 import EventBus from '../main.js'
 
 export default {
   methods: {
-        authUser() {
-            EventBus.$on('authenticated', data => {
-                this.logged = data;
-                alert(data);
-            });
+        authUser(data) {
+           alert(data);
         }
   },
   components: {
@@ -41,7 +37,7 @@ export default {
   },
   created() {
 
-    this.authUser();
+    EventBus.$on('authenticated', this.authUser);
     
     if (this.logged == false) this.$router.replace({ name: "login" });
 

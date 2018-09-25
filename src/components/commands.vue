@@ -7,7 +7,7 @@
 
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
 				<h4 class="h4 topmargins">Customization</h4>
-				<transition name="fade" mode="out-in" v-for="index, id in commands.customization">
+				<transition name="fade" mode="out-in" v-for="index, id in commands.customization" :key="id">
 					<span v-if="!commands.customization[id].visible" key="1" @mouseover="commands.customization[id].visible = !commands.customization[id].visible"><b>{{ commands.customization[id].text1 }}</b><br /></span>
 					<span v-else key="2" @mouseleave="commands.customization[id].visible = !commands.customization[id].visible">{{ commands.customization[id].text2 }}<br /></span>
 				</transition> 
@@ -15,7 +15,7 @@
 
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
 				<h4 class="h4 topmargins">Main</h4>
-				<transition name="fade" mode="out-in" v-for="index, id in commands.main">
+				<transition name="fade" mode="out-in" v-for="index, id in commands.main" :key="id">
 					<span v-if="!commands.main[id].visible" key="1" @mouseover="commands.main[id].visible = !commands.main[id].visible"><b>{{ commands.main[id].text1 }}</b><br /></span>
 					<span v-else key="2" @mouseleave="commands.main[id].visible = !commands.main[id].visible">{{ commands.main[id].text2 }}<br /></span>
 				</transition>
@@ -23,7 +23,7 @@
 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
 				<h4 class="h4 topmargins">Server</h4>
-				<transition name="fade" mode="out-in" v-for="index, id in commands.server">
+				<transition name="fade" mode="out-in" v-for="index, id in commands.server" :key="id">
 					<span v-if="!commands.server[id].visible" key="1" @mouseover="commands.server[id].visible = !commands.server[id].visible"><b>{{ commands.server[id].text1 }}</b><br /></span>
 					<span v-else key="2" @mouseleave="commands.server[id].visible = !commands.server[id].visible">{{ commands.server[id].text2 }}<br /></span>
 				</transition>
@@ -31,7 +31,7 @@
 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
 				<h4 class="h4 topmargins">Ranking</h4>
-				<transition name="fade" mode="out-in" v-for="index, id in commands.ranking">
+				<transition name="fade" mode="out-in" v-for="index, id in commands.ranking" :key="id">
 					<span v-if="!commands.ranking[id].visible" key="1" @mouseover="commands.ranking[id].visible = !commands.ranking[id].visible"><b>{{ commands.ranking[id].text1 }}</b><br /></span>
 					<span v-else key="2" @mouseleave="commands.ranking[id].visible = !commands.ranking[id].visible">{{ commands.ranking[id].text2 }}<br /></span>
 				</transition>
@@ -39,7 +39,7 @@
 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
 				<h4 class="h4 topmargins">Voting</h4>
-				<transition name="fade" mode="out-in" v-for="index, id in commands.voting">
+				<transition name="fade" mode="out-in" v-for="index, id in commands.voting" :key="id">
 					<span v-if="!commands.voting[id].visible" key="1" @mouseover="commands.voting[id].visible = !commands.voting[id].visible"><b>{{ commands.voting[id].text1 }}</b><br /></span>
 					<span v-else key="2" @mouseleave="commands.voting[id].visible = !commands.voting[id].visible">{{ commands.voting[id].text2 }}<br /></span>
 				</transition>

@@ -20,8 +20,8 @@
 
 <script>
 
-import { mdbInput } from 'mdbvue'
 import EventBus from '../main.js'
+import { mdbInput } from 'mdbvue'
 
 export default {
   methods: {
