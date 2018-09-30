@@ -10,16 +10,20 @@
 					<h4 class="card-title">Player ranking</h4>
 					<p class="card-text">Choose map and style to see top players!</p>
 					<div class="row">
-						<div class="col-6 text-center scrollable-menu animated" tabindex="0" @click="mapsMenu = !mapsMenu">
-							<h5 v-if="!mapsMenu" class="align-middle"> {{ map.name }}</h5>
+						<div class="col-6 text-center scrollable-menu" tabindex="0" @click="mapsMenu = !mapsMenu">
+							<h5 v-if="!mapsMenu" class="align-middle">{{ map.name }}</h5>
 							
 							<dropdown-item v-if="mapsMenu" v-for="(mapdata, id) in maps" :key="id">
-							
+
+								<div @click="checkMap($event)">{{ removeIndex(mapdata.map) }}</div>
+							<!--
 								<span @click="checkMap($event)" v-if="mapdata.map.includes(substr[0])">{{ mapdata.map.substr(0, (mapdata.map.length - (mapdata.map.length - mapdata.map.indexOf(substr[0])))) }}</span>
 								<span @click="checkMap($event)" v-else-if="mapdata.map.includes(substr[1])">{{ mapdata.map.substr(0, (mapdata.map.length - (mapdata.map.length - mapdata.map.indexOf(substr[1])))) }}</span>
 								<span @click="checkMap($event)" v-else-if="mapdata.map.includes(substr[2])">{{ mapdata.map.substr(0, (mapdata.map.length - (mapdata.map.length - mapdata.map.indexOf(substr[2])))) }}</span>
 								<span @click="checkMap($event)" v-else-if="mapdata.map.includes(substr[3])">{{ mapdata.map.substr(0, (mapdata.map.length - (mapdata.map.length - mapdata.map.indexOf(substr[3])))) }}</span>
 								<span @click="checkMap($event)" v-else-if="mapdata.map.includes(substr[4])">{{ mapdata.map }}</span>
+							-->
+
 
 							</dropdown-item>
 							
@@ -28,7 +32,7 @@
 						<div class="col-6 text-center scrollable-menu" tabindex="0" @click="stylesMenu = !stylesMenu">
 							<h5 v-if="!stylesMenu" class="align-middle"> {{ map.style }}</h5>
 							<dropdown-item v-if="stylesMenu" v-for="(styledata, id) in styles" :key="id">
-								<span @click="checkStyle($event)">{{ id+1 }}. {{ styleList[styledata.style].name }}</span>
+								<div @click="checkStyle($event)">{{ id+1 }}. {{ styleList[styledata.style].name }}</div>
 							</dropdown-item>
 						</div>
 						
@@ -36,7 +40,7 @@
 
 				</div>	
 
-				<button class="btn btn-elegant" @click="getRecords">Show</button>
+				<button class="btn btn-elegant" @click.prevent="getRecords">Show</button>
 
 			</div>
 
@@ -53,6 +57,7 @@
 						<button class="btn btn-outline-elegant" @click.prevent="switchAll(); switchRanking()">Map ranking</button>
 						<button class="btn btn-outline-elegant" @click.prevent="switchAll(); switchTop15()">Top 15 players</button>
 						<button class="btn btn-outline-elegant" @click.prevent="switchAll(); switchSeasons()">Top season players</button>
+						<button class="btn btn-outline-elegant" @click.prevent="switchAll(); switchNerds()">Top speedrun nerds</button>
 						
 					</div>
 				</card-header>
@@ -89,8 +94,8 @@
 									<tr v-for="record, index in records">
 										<td>{{ index + 1 }}</td>
 										<td>{{ record.name }}</td>
-										<td>{{ timeDiff(record.time, index) }}</td>
-										<td>{{ index }}</td>
+										<td>{{ zeroAdder(record.time) }}</td>
+										<td>{{ rounder(record.time - timeDiff(record.time, index)) }}</td>
 										<td>{{ record.jumps }}</td>
 										<td>{{ record.strafes }}</td>
 										<td>{{ record.sync }}</td>
@@ -136,7 +141,6 @@
 
 					<div v-if="menu.seasons">
 
-
 							<card-title>Seasons</card-title>
 							<card-text>Top 3 players of every season</card-text>
 
@@ -162,12 +166,12 @@
 								<div class="card card-left">
 								<img class="card-img-top" src="../assets/summer.jpg" alt="Summer image">
 									<div class="card-body">
-										<h4 class="card-title">Summer Season 1</h4>
+										<h4 class="card-title">Summer Season 1 (no AC)</h4>
 										<div class="flex-row">
 											<ol>
-												<li></li>
-												<li></li>
-												<li></li>
+												<li>pablo</li>
+												<li>diabel</li>
+												<li>aang</li>
 											</ol>
 										</div>
 									</div>
@@ -207,6 +211,30 @@
 							</div>
 
 						</div>
+
+					</div>
+
+					<div v-if="menu.nerds">
+
+						<card-title>Top 15 speedrun nerds</card-title>
+						<card-text>Who played the most on speedrun :D</card-text>
+
+						<tbl striped responsive>
+							<tbl-head>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>Duration</th>
+								</tr>
+							</tbl-head>
+							<tbl-body>
+								<tr v-for="player, index in nerds">
+									<td>{{ index + 1 }}</td>
+									<td>{{ player.name }}</td>
+									<td>{{ rounder((player.dur / 3600)) }} hrs</td>
+								</tr>
+							</tbl-body>
+						</tbl>
 
 					</div>
 
@@ -260,7 +288,8 @@ export default {
 	  },
 	  checkStyle(event) {
 	  	this.map.style = event.target.innerHTML.substr(3);
-		this.styleID = (event.target.innerHTML.charAt(0) - 1);
+		let id = event.target.innerHTML.split(".");
+		this.styleID = id[0] - 1;
 	  },
 	  convertDate(timeStamp) {
 		var theDate = new Date(timeStamp * 1000);
@@ -271,6 +300,7 @@ export default {
 		this.menu.top15 = false;
 		this.menu.ranking = false;
 		this.menu.seasons = false;
+		this.menu.nerds = false;
 	  },
 	  switchRanking() {
 		this.menu.ranking = !this.menu.ranking;
@@ -281,25 +311,61 @@ export default {
 	  switchSeasons() {
 		this.menu.seasons = !this.menu.seasons;
 	  },
+	  switchNerds() {
+		this.menu.nerds = !this.menu.nerds;
+	  },
 	  timeDiff(time, index) {
 		  if (index == 0) {
 			  this.firstTime = time;
 		  }
 		  return this.firstTime;
 	  },
+	  rounder(value) {
+		  return Math.round(value * 100) / 100;
+	  },
+	  zeroAdder(value) {
+		  if (value == 0) return '';
+		  else {
+			  let time = value.split(".");
+			  let s = time[0];
+			  let ms = time[1];
+			  while (ms.length < 3)
+			  	ms += "0";
+			  time = s+"."+ms;
+			  return time;
+		  }
+	  },
+	  removeIndex(map) {
+		  let pieces = map.split("_");
+		  if (map != 'speedrun_3h' && map != 'speedrun_otton' && map != 'speedrun_blocks2') {
+			if (map == 'speedrun_alley_beta2_21f') pieces.pop();
+		 	pieces.pop();
+			return pieces.join('_');
+		  }
+		  else return map;
+		  
+	  },
 	  getRecords() {
+
+		this.menu.ranking = true;
+		this.menu.top15 = false;
+		this.menu.seasons = false;
+		this.menu.nerds = false;
 
 		var self = this;
 
 		axios.get('http://speedrun.minespace.net/api/public/api/ranking/'+self.map.name+'/style='+self.styleID)
 		.then(function (response) {
-			// handle success
+			//handle success
+			//console.log(response);
 			self.records = response.data;
 			self.map.tier = self.records[0].tier;
 			self.map.recordAccess = true;
+			
 		})
 		.catch(function (error) {
 			// handle error
+			console.log(error);
 		})
 		.then(function () {
 			// always executed
@@ -313,16 +379,18 @@ export default {
           maps: [],
           styles: [],
 		  top15: [],
+		  records: [],
+		  nerds: [],
 		  substr: ['_beta', '_final', '_full', '_demo', ''],
 		  mapsMenu: false,
 		  stylesMenu: false,
 		  styleID: '',
-		  records: [],
 		  firstTime: '',
 		  menu: {
 			top15: true,
 		  	ranking: false,
-		 	seasons: false
+		 	seasons: false,
+			nerds: false
 		  },
 		  map: {
 			  name: 'Select map',
@@ -332,6 +400,26 @@ export default {
 		  }
 		  
       }
+  },
+  created() {
+
+	const axios = require('axios');
+
+	var self = this;
+
+	axios.get('http://speedrun.minespace.net/api/public/api/ranking/top15')
+	.then(function (response) {
+		// handle success
+		self.top15 = response.data;
+	})
+	.catch(function (error) {
+		// handle error
+		console.log(error);
+	})
+	.then(function () {
+		// always executed
+	});
+
   },
   mounted() {
 	const axios = require('axios');
@@ -364,10 +452,10 @@ export default {
 		// always executed
 	});
 
-	axios.get('http://speedrun.minespace.net/api/public/api/ranking/top15')
+	axios.get('http://speedrun.minespace.net/api/public/api/ranking/nerds')
 	.then(function (response) {
 		// handle success
-		self.top15 = response.data;
+		self.nerds = response.data;
 	})
 	.catch(function (error) {
 		// handle error

@@ -20,7 +20,7 @@
 
 		<!--Copyright-->
 		<div class="footer-copyright py-3">
-			Website created by <strong>emKay</strong>, still being improved & new things implemented :>
+			Website created by <strong><a href="https://steamcommunity.com/id/sasiadofc">emKay</a></strong>, still being improved & new things implemented :>
 		</div>
 		<!--/.Copyright-->
 

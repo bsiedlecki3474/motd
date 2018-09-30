@@ -10,7 +10,7 @@
 				<transition name="fade" mode="out-in" v-for="index, id in commands.customization" :key="id">
 					<span v-if="!commands.customization[id].visible" key="1" @mouseover="commands.customization[id].visible = !commands.customization[id].visible"><b>{{ commands.customization[id].text1 }}</b><br /></span>
 					<span v-else key="2" @mouseleave="commands.customization[id].visible = !commands.customization[id].visible">{{ commands.customization[id].text2 }}<br /></span>
-				</transition> 
+				</transition>
 			</div>
 
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
@@ -70,7 +70,6 @@ export default {
 				  {text1: "!glock", text2: "gives you a glock", visible: false}
 			  ],
 			  main: [
-				  {text1: "!help", text2: "opens up this window", visible: false},
 				  {text1: "!style or !class", text2: "opens up styles menu", visible: false},
 				  {text1: "!r or !start", text2: "teleports to the start zone", visible: false},
 				  {text1: "!hide or !invis", text2: "hides some stuff on the server", visible: false}
@@ -79,8 +78,7 @@ export default {
 				  {text1: "timeleft", text2: "shows time left for the map", visible: false},
 				  {text1: "thetime", text2: "shows actual time", visible: false},
 				  {text1: "currentmap", text2: "shows current map", visible: false},
-				  {text1: "!vipmenu", text2: "opens VIP menu (VIP only)", visible: false},
-				  {text1: "!vip", text2: "opens info website about VIP", visible: false}
+				  {text1: "!vipmenu", text2: "opens VIP menu (VIP only)", visible: false}
 			  ],
 			  ranking: [
 				  {text1: "!wr", text2: "shows best times for the map", visible: false},

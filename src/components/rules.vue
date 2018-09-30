@@ -26,7 +26,7 @@
 
                     <li> It is forbidden to use loopholes in our rules. The final decision to ban you or not goes to the admin if he or she thinks your behaviour was disruptive for the server. </li>
 
-                    <li> Do not add admins or mods, if you need to tell us something use the forum. Only add us in case of URGENT necessity like crashed servers. </li>
+                    <li> Do not add admins or mods, if you need to tell us something use discord. Only add us in case of URGENT necessity like crashed servers. </li>
 
                     <li> Goading or trolling players into behaving inappropriately is forbidden. </li>
 

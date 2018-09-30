@@ -1,28 +1,35 @@
 <template>
-    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar navbar-dark rgba-red-strong" id="navbar">
-
-		<a class="navbar-brand" href="#motdr"><img src="../assets/bhopicon_white.png" height="30" alt="bhopicon"></a>
-
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<!--<a class="nav-link" href="index.php">Back to help</a>-->
-                    <router-link to="/" class="nav-link">Back to main page</router-link>
-				</li>
-			</ul>
-            
-		</div>
-
-	</nav>
+	<navbar position="top" dark color="elegant" scrolling>
+		<img src="../assets/bhopicon_white.png" height="30" alt="bhopicon">
+		<navbar-collapse>
+			<navbar-nav class="top-nav-collapse">
+				<navbar-item><router-link to="/" class="nav-link">Back to main page</router-link></navbar-item>
+			</navbar-nav>
+		</navbar-collapse>
+	</navbar>
 </template>
 
 <script>
-export default {
 
+import { 
+	Navbar, 
+	NavbarItem, 
+	NavbarNav, 
+	NavbarCollapse, 
+	waves
+} from 'mdbvue';
+
+
+export default {
+	components: {
+		Navbar,
+		NavbarItem,
+		NavbarNav,
+		NavbarCollapse,
+		waves
+	}
 }
+
 </script>
 
 <style scoped>

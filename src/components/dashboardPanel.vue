@@ -39,7 +39,7 @@ export default {
 
     EventBus.$on('authenticated', this.authUser);
     
-    if (this.logged == false) this.$router.replace({ name: "login" });
+    //if (this.logged == false) this.$router.replace({ name: "login" });
 
   },
   data() {
