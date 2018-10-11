@@ -1,6 +1,14 @@
 <template>
     <div class="row justify-content-center">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 text-center">
+
+            <h1>SpeedrunTV demo list</h1>
+
+            <div>
+                <a class=" single-pager" v-for="date, index in dates" :key="index" @click="getDay(date)">
+                    <btn size="sm" outline="elegant">{{ convert(date) }}</btn>
+                </a>
+            </div>
 
             <tbl striped responsive>
                 <tbl-head>
@@ -32,18 +40,73 @@
 import { 
     Tbl,
 	TblHead,
-	TblBody 
+	TblBody,
+    Btn
     } 
 from 'mdbvue'
 
 export default {
   methods: {
+      convert(date) {
+          let year = date.substr(0, 4);
+          let month = date.substr(4, 2);
+          let day = date.substr(6, 2);
+          return year+"-"+month+"-"+day;
+      },
+      getDay(date) {
 
+          var self = this;
+
+            axios.get('http://speedrun.minespace.net/api/public/api/demolist', {
+                params: {
+                    date: date
+                }
+            })
+            .then(function (response) {
+                // handle success
+                self.demolist = response.data;
+                //console.log(response.data)
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                //always executed
+                for (var i = 0; i < self.demolist.length; i++) {
+
+                    var data = self.demolist[i].split("-");
+
+                    var year = data[1].substr(0, 4);
+                    var month = data[1].substr(4, 2);
+                    var day = data[1].substr(6, 2);
+
+                    var date = day + "." + month + "." + year;
+                    var shortdate = day + "/" + month
+
+                    var hour = data[2].substr(0, 2);
+                    var minute = data[2].substr(2, 2);
+                    var second = data[2].substr(4, 2);
+
+                    var time = hour + ":" + minute + ":" + second;
+
+                    var map = data[5].slice(0, -8)
+
+                    self.$set(self.demodata.date, i, date);
+                    self.$set(self.demodata.time, i, time);
+                    self.$set(self.demodata.map, i, map);
+                    self.$set(self.demodata.link, i, self.demolist[i]);
+                }
+
+            });
+
+      }
   },
   components: {
     Tbl,
 	TblHead,
-	TblBody
+	TblBody,
+    Btn
   },
   data() {
       return {
@@ -53,55 +116,77 @@ export default {
             time: {},
             map: {},
             link: {}
-        }
+        },
+        dates: [],
       }
   },
   created() {
 
     var self = this;
 
-    axios.get('http://speedrun.minespace.net/api/public/api/demolist')
+    axios.get('http://speedrun.minespace.net/api/public/api/demolistall')
     .then(function (response) {
         // handle success
-        self.demolist = response.data;
-    })
-    .catch(function (error) {
-        // handle error
-        console.log(error);
-    })
-    .then(function () {
-        // always executed
-        for (var i = 0; i < self.demolist.length; i++) {
+        self.dates = response.data;
 
-            var data = self.demolist[i].split("-");
+        axios.get('http://speedrun.minespace.net/api/public/api/demolist', {
+            params: {
+                date: self.dates[0]
+            }
+        })
+        .then(function (response) {
+            // handle success
+            self.demolist = response.data;
+            //console.log(response.data)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function () {
+            //always executed
+            for (var i = 0; i < self.demolist.length; i++) {
 
-            var year = data[1].substr(0, 4);
-            var month = data[1].substr(4, 2);
-            var day = data[1].substr(6, 2);
+                var data = self.demolist[i].split("-");
 
-            var date = day + "." + month + "." + year;
+                var year = data[1].substr(0, 4);
+                var month = data[1].substr(4, 2);
+                var day = data[1].substr(6, 2);
 
-            var hour = data[2].substr(0, 2);
-            var minute = data[2].substr(2, 2);
-            var second = data[2].substr(4, 2);
+                var date = day + "." + month + "." + year;
+                var shortdate = day + "/" + month
 
-            var time = hour + ":" + minute + ":" + second;
+                var hour = data[2].substr(0, 2);
+                var minute = data[2].substr(2, 2);
+                var second = data[2].substr(4, 2);
 
-            var map = data[5].slice(0, -8)
+                var time = hour + ":" + minute + ":" + second;
 
-            self.$set(self.demodata.date, i, date);
-            self.$set(self.demodata.time, i, time);
-            self.$set(self.demodata.map, i, map);
-            self.$set(self.demodata.link, i, self.demolist[i]);
-        }
+                var map = data[5].slice(0, -8)
+
+                self.$set(self.demodata.date, i, date);
+                self.$set(self.demodata.time, i, time);
+                self.$set(self.demodata.map, i, map);
+                self.$set(self.demodata.link, i, self.demolist[i]);
+            }
+
+        });
 
     });
+    
   }
+
 }
 </script>
 
 <style scoped>
 
+.navbarfixer {
+    padding-top: 75px;
+}
 
+.single-pager {
+    margin: 0 10px !important;
+}
 
 </style>
