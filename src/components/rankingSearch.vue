@@ -185,9 +185,9 @@
 										<h4 class="card-title">Autumn Season 1</h4>
 										<div class="flex-row">
 											<ol>
-												<li></li>
-												<li></li>
-												<li></li>
+												<li>diabel</li>
+												<li>noqman</li>
+												<li>pablo</li>
 											</ol>
 										</div>
 									</div>
@@ -201,9 +201,9 @@
 										<h4 class="card-title">Winter Season 1</h4>
 										<div class="flex-row">
 											<ol>
-												<li></li>
-												<li></li>
-												<li></li>
+												<li>kiruu</li>
+												<li>panzer</li>
+												<li>diabel</li>
 											</ol>
 										</div>
 									</div>
