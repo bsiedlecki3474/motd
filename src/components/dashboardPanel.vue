@@ -15,8 +15,9 @@
             
             </pre>
 
-            {{ this.logged }}
+            <input v-model="logged">
 
+            {{test}}<button @click="this.test = !this.test;">switch</button>
 
         </div>
     </div>
@@ -24,7 +25,7 @@
 
 <script>
 
-import EventBus from '../main.js'
+//import EventBus from '../main.js'
 
 export default {
   methods: {
@@ -35,16 +36,21 @@ export default {
   components: {
       
   },
-  created() {
+  mounted() {
 
-    //EventBus.$on('authenticated', this.authUser);
+    this.$root.$on('authenticated', data => {
+        console.log(data);
+        this.logged = data;
+        alert(this.logged);
+    })
     
     //if (this.logged == false) this.$router.replace({ name: "login" });
 
   },
   data() {
       return {
-          logged: ''
+          logged: false,
+          test: false
       }
   }
 }

@@ -1,4 +1,5 @@
 <template>
+	<div class="container-fluid margins">
 	<div class="row justify-content-center">
 
 		<div class="hidden-xs col-sm-12 col-md-12 col-lg-12 col-xl-12 navbarfixer">
@@ -243,7 +244,7 @@
 
 		</div>
 
-	</div>
+	</div></div>
 </template>
 
 <script>
@@ -470,6 +471,11 @@ export default {
 </script>
 
 <style scoped>
+
+.margins {
+    margin-top: 5%;
+    margin-bottom: 2.5%;
+}
 
 .scrollable-menu {
 	height: auto;

@@ -23,6 +23,7 @@
 import EventBus from '../main.js'
 import { mdbInput } from 'mdbvue'
 
+
 export default {
   methods: {
       loginAdmin() {
@@ -51,15 +52,24 @@ export default {
                 .then(function () {
                     // always executed
                     if (self.logged == false) self.loginError = 'Wrong username or password';
-                    else { 
-                        self.loginError = '';
-                        EventBus.$emit('authenticated', true);
-                        self.$router.replace({ name: "dashboard" });
-                    }
+                    // else { 
+                    //     self.loginError = '';
+                    //     this.$emit('authenticated', true);
+                    //     //self.$router.replace({ name: "dashboard" });
+                    // }
+                    else self.loginSuccess();
                         
                 });
             }
+      },
+      loginSuccess() {
+          console.log("loginsuccess");
+          this.$root.$emit('authenticated', true);
+          console.log("loginsuccess-2");
+          this.$router.replace({ name: "dashboard" });
+          console.log("loginsuccess-3");
       }
+
   },
   components: {
       mdbInput

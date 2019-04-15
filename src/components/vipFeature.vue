@@ -22,7 +22,9 @@
 
         <h4 class="h4 margins"> Trails </h4>
         <div class="row justify-content-center">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center bannerimage" id="trailimage"></div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center bannerimage">
+                <img :src="require('@/assets/trail.jpg')" id="trailimage">
+            </div>
         </div>
 
         <h4 class="topmargins"> Our server provides various trail colors supported by custom plugin. </h4>
@@ -30,7 +32,9 @@
 
         <h4 class="h4 margins"> VIP Menu </h4>
         <div class="row justify-content-center">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center bannerimage" id="vipmenuimage"></div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center bannerimage">
+                <img :src="require('@/assets/vipmenu.jpg')" id="vipimage">
+            </div>
         </div>
 
         <h4 class="topmargins"> Here you can see the menu available at !vip command. </h4>
@@ -41,7 +45,7 @@
         <h4 class="topmargins"> If everything is clear for you </h4>
         <p> The button below will redirect you straight into the website where you can order a VIP package. </p>
 
-        <button id="buy" class="btn btn-elegant" @click="window.location.replace('https://store.minespace.net/');">Visit the store</button>
+        <button id="buy" class="btn btn-elegant" onClick="window.open('https://store.minespace.net/')">Visit the store</button>
 
     </div>
 </template>
@@ -52,7 +56,9 @@ import {  } from 'mdbvue'
 
 export default {
   methods: {
-        
+        redirect(link) {
+            return window.open(link);
+        }
   },
   components: {
       
@@ -105,7 +111,36 @@ export default {
     margin-right: auto;
     position: relative;
     height: 50vh;
+    width: 100%;
+    overflow: hidden;
 }
+
+.bannerimage img {
+    position: absolute;
+}
+
+@media screen and (max-width: 768px) {
+    .bannerimage #trailimage {
+        left: -400px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .bannerimage img {
+        width: 100%;
+    }
+}
+
+
+
+
+@media screen and (min-width: 992px) {
+    .bannerimage #vipimage {
+
+        top: -100px;
+    }
+}
+
 
 #trailimage {
     background: url('../assets/trail.jpg') no-repeat center/cover;

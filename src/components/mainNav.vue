@@ -4,7 +4,7 @@
 		<navbar-collapse>
 			<navbar-nav class="top-nav-collapse">
 				<navbar-item active><router-link to="vip" class="nav-link"><b>VIP feature</b></router-link></navbar-item>
-				<!--
+				
 				<dropdown tag="li" class="nav-item">
 					<dropdown-toggle tag="a" navLink color="none" slot="toggle" waves-fixed>Timer</dropdown-toggle>
 					<dropdown-menu>
@@ -13,7 +13,7 @@
 					<dropdown-item><a href="alltime/alltime_submit.php">Submit your all-time record</a></dropdown-item>
 					</dropdown-menu>
 				</dropdown>
-				-->
+				
 				<navbar-item><router-link to="ranking" class="nav-link">Ranking</router-link></navbar-item>
 				<navbar-item href="#rules">Rules</navbar-item>
 				<navbar-item href="#styles">Styles</navbar-item>
@@ -54,6 +54,12 @@ export default {
 		DropdownMenu,
 		DropdownToggle,
 		waves
+	},
+	data() {
+      return {
+        activeIndex: '1',
+        activeIndex2: '1'
+      }
 	}
 }
 
